@@ -7,10 +7,11 @@ def makeLabel(dirname, category):
     full_path = os.getcwd() + "\\" + str(dirname)
     f = open(sub_directory+".csv", 'w', encoding='utf-8', newline='')
     wr = csv.writer(f)
+    wr.writerow(["ID", "category"])
 
     for filename in glob.glob(full_path +"\\"+ "*.jpg"):
-        short_name = os.path.split(filename)[-1]
-        wr.writerow([short_name+" "+category])
+        short_name = os.path.split(filename)[-1].split('.')[0]
+        wr.writerow([short_name, category])
         # []를 하지 않으면 한글자 한글자마다 콤마가 찍힘
         # 참고 : https://stackoverflow.com/questions/1816880/why-does-csvwriter-writerow-put-a-comma-after-each-character
 
